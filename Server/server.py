@@ -9,16 +9,20 @@ from controllers import transictions_controller;
 
 
 app = FastAPI()
-origins = origins_const
+origins = [
+    "http://localhost:3000",
+    "localhost:3000"
+]
+
+
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
-
 
 
 
@@ -26,5 +30,5 @@ app.include_router(categories_controller.router)
 app.include_router(transictions_controller.router)
 
 if __name__ == "__main__":
-     uvicorn.run("server:app", host="0.0.0.0", port=8080,reload=True)
+     uvicorn.run("server:app", host="0.0.0.0", port=8081,reload=True)
 

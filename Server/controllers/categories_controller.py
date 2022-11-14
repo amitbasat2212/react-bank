@@ -1,9 +1,7 @@
 from fastapi import APIRouter
-
+from service import category_service
 router = APIRouter()
 
-
-
-@router.delete('/categories/', status_code=200)
+@router.get('/categories/', status_code=200)
 def get_categories():
-    pass
+    return category_service.get_categories()

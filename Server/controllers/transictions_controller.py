@@ -4,10 +4,8 @@ from service import transaction_service
 
 router = APIRouter()
 
-
-
 @router.get('/transactions/', status_code=200)
-def get_transactions():
+def get_transactions():   
     return transaction_service.get_transactions()
 
 

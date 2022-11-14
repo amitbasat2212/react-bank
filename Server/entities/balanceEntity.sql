@@ -1,5 +1,4 @@
 use bank
-CREATE TABLE user(
-    user_id INT NOT NULL PRIMARY KEY ,     
-    balance_amount INT   
+CREATE TABLE balance(        
+    balance_amount INT  PRIMARY KEY 
 );

@@ -6,7 +6,8 @@ def create_transaction(transaction):
     new_transaction= Transaction(
         transaction[transaction_const.transaction_id],
         transaction[transaction_const.category_name],
-        transaction[transaction_const.category_money_spend],
+        transaction[transaction_const.transiction_amount],
+        transaction[transaction_const.transaction_vendor],
         transaction[transaction_const.is_delete])
 
     return new_transaction    
