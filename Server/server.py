@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI
 from origins import origins_const
-from fastapi.staticfiles import StaticFiles
+
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from controllers import categories_controller;
@@ -19,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 
 app.include_router(categories_controller.router)

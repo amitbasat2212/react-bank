@@ -1,6 +1,6 @@
 use bank
 
 CREATE TABLE categories(
-    name_category VARCHAR(20) NOT NULL PRIMARY KEY,
-    money_spend_category VARCHAR(50)    
+    category_name VARCHAR(20) NOT NULL PRIMARY KEY,
+    category_money_spend VARCHAR(50)    
 );

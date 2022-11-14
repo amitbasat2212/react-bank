@@ -1,2 +1,2 @@
 
-DROP TABLE typepokemon_pokemon,trainer_pokemon,pokemon,trainer,typepokemon
+DROP TABLE balance,transactions,categories
