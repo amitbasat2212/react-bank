@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-
+from fastapi import Request
 router = APIRouter()
 
 
@@ -11,8 +11,8 @@ def get_transactions():
 
 
 @router.post('/transactions/', status_code=201)
-def add_transaction():
-    pass
+async def add_transaction(request: Request):
+    candidate = await request.json()
 
 @router.delete('/transactions/', status_code=200)
 def delete_transaction(id):
