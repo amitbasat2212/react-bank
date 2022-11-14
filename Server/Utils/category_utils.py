@@ -1,4 +1,4 @@
-from Models.categories_model import Category
+from Models.category_model import Category
 from consts import categories_consts
 
 def create_category(category):

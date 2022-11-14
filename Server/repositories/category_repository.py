@@ -1,5 +1,5 @@
-from connection import data_base_manager
-from Utils import categories_utils
+from .connection import data_base_manager
+from Utils import category_utils
 
 
 
@@ -9,7 +9,7 @@ def get_categories_query():
             query_categories = f"SELECT * from transactions;"
             cursor.execute(query_categories)
             result_categories = cursor.fetchall()
-            transactions = categories_utils.create_categories(result_categories)
-            return transactions
+            categories = category_utils.create_categories(result_categories)
+            return categories
     except TypeError as e:
         return e

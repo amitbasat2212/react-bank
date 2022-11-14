@@ -1,4 +1,4 @@
-from connection import data_base_manager
+from .connection import data_base_manager
 from Utils import transaction_utils
 from consts import transaction_const
 import ErrorHandaling
