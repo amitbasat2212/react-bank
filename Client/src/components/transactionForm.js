@@ -30,7 +30,7 @@ export default function TransactionForm() {
         .then(response => response.json())
         .then(
             (result) => {   
-                alert(`you have new transaction ${result}`)
+                alert(`you have new transaction ${result.data}`)
             },           
             (error) => {              
               return error

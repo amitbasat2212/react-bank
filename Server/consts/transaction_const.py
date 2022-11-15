@@ -1,5 +1,10 @@
 transaction_id="transaction_id"
-transiction_amount="amount"
-category_name="category"
+transiction_amount="transiction_amount"
+category_name="category_name"
 is_delete="is_delete"
-transaction_vendor="vendor"
+transaction_vendor="transaction_vendor"
+category="category"
+amount="amount"
+vendor="vendor"
+transaction_not_delete=False
+transaction_id_defult=0
