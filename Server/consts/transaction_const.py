@@ -1,5 +1,5 @@
 transaction_id="transaction_id"
-transiction_amount="transiction_amount"
-category_name="category_name"
+transiction_amount="amount"
+category_name="category"
 is_delete="is_delete"
-transaction_vendor="transaction_vendor"
+transaction_vendor="vendor"

@@ -49,7 +49,7 @@ export default function Transictions(props) {
         setTransactions(result)
       },           
       (error) => {              
-        return error
+        setError(error)
       }
     )
       }, [])

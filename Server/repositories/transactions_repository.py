@@ -35,10 +35,11 @@ def add_transaction_query(transaction_data):
     try:
         with data_base_manager.connection.cursor() as cursor:
             insert_new_transaction = f'''INSERT IGNORE INTO transactions
-            values('{0}','{transaction_data[transaction_const.transiction_amount]}'
+            values('{0}'
+            ,'{transaction_data[transaction_const.transiction_amount]}'
             ,'{transaction_data[transaction_const.category_name]}'
-            ,'{transaction_data[transaction_const.transaction_vendor]},
-            ,{False})'''
+            ,'{transaction_data[transaction_const.transaction_vendor]}'
+            ,'{False}')'''
 
             cursor.execute(insert_new_transaction)
             data_base_manager.connection.commit()
