@@ -1,28 +1,37 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import  { useState, useEffect } from 'react'
+import Categorey from './Categorey';
 
 export default function Categories() {
+  
+    const [Categories,setCategories]=useState([])
+    const [error, setError] = useState(null);
+    useEffect(() => {
+     fetch(`http://localhost:8081/categories/`) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        setCategories(result)
+      },           
+      (error) => {              
+        setError(error)
+      }
+    )
+      }, [])  
   return (
-    <Card  sx={{ maxWidth: 345, m: 4 }}>     
-      <CardContent >  
-      <Box component="div" sx={{ overflow: 'hidden',visibility: 'visible' ,bgcolor: 'text.secondary' }}>
-            Not scrollable, overflow is hidden
-      </Box> 
-       
+    <Card sx={{ maxWidth: 345, m: 4 }}>     
+      <CardContent sx={{height: 100}} >  
+      <Box sx={{ boxShadow: 8 }}></Box>       
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        {Categories.map((ca) => (
+            <Categorey categorey={ca}/>
+        ))}                    
         </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      </CardContent>      
     </Card>
   );
 }
