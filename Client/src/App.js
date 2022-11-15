@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import './App.css';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
 import Opertions from "./components/Opertions";
+import BreakDown from "./components/BreakDown";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
        />} />   
       <Route path="/operations" exact render={() => <Opertions
        />} />  
-      
+      <Route path="/breakdown" exact render={() => <BreakDown
+       />} />  
 
       </div>       
     </div>

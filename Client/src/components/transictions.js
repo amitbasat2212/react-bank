@@ -19,7 +19,7 @@ export default function Transictions() {
     .then(res => res.json())
     .then(
       (result) => {   
-        console.log(result)           
+                 
         setTransactions(result)
       },           
       (error) => {              
