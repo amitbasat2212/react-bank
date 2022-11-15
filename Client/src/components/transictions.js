@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+import { fetchTransaction } from "../ApiClient";
 
 import React, { useState, useEffect } from 'react'
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,16 +41,17 @@ export default function Transictions(props) {
     const [Transactions,setTransactions]=useState([])
     const [error, setError] = useState(null);
     useEffect(() => {
-        fetch("http://localhost:8081/transactions/")
-          .then(res => res.json())
-          .then(
-            (result) => {              
-              setTransactions(result);
-            },           
-            (error) => {              
-              setError(error);
-            }
-          )
+     fetch(`http://localhost:8081/transactions/`) 
+    .then(res => res.json())
+    .then(
+      (result) => {   
+        console.log(result)           
+        setTransactions(result)
+      },           
+      (error) => {              
+        return error
+      }
+    )
       }, [])
   
     return (
