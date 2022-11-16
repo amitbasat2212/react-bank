@@ -13,6 +13,7 @@ import React, { useState, useEffect } from 'react'
 export default function Transictions() {
     const [Transactions,setTransactiosns]=useState([])
     const [error, setError] = useState(null);
+    
     useEffect(() => {
         fetchTransactionFromApi();
       }, [])

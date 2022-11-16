@@ -1,8 +1,8 @@
 
-const BASE_URI = 'http://localhost:8081/';
+const transcationsUrl = 'http://localhost:8081/transactions/'
 
 export function fetchTransactionsApi(){
-    return fetch(`http://localhost:8081/transactions/`) 
+    return fetch(transcationsUrl) 
     .then(res => res.json())
     .then(
       (result) => {                   
@@ -15,8 +15,8 @@ export function fetchTransactionsApi(){
 }
 
 export function deleteTransactionApi(idTransaction){
-    console.log('http://localhost:8081/transactions/'+idTransaction)
-    return fetch('http://localhost:8081/transactions/'+idTransaction, { method: 'DELETE' })
+    
+    return fetch(transcationsUrl+idTransaction, { method: 'DELETE' })
     .then(res => res.json())
     .then(
         (result) => {                   
@@ -35,7 +35,7 @@ export function AddTransaction(statusInput){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(statusInput)
     };
-    return fetch('http://localhost:8081/transactions/', newTransaction)
+    return fetch(transcationsUrl, newTransaction)
         .then(response => response.json())
         .then(
             (result) => {   
