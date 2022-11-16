@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AddTransaction} from "../ApiClient/ApiClientTransactions";
 
 
 
@@ -16,25 +17,15 @@ const theme = createTheme();
 
 export default function TransactionForm() {
     const [statusInput,setStatusInput]=useState({
-
+        amount:0,
+        category:"",
+        vendor:""s
     })
 
   const handleSubmit = () => {
-    const newTransaction = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(statusInput)
-    };
-    fetch('http://localhost:8081/transactions/', newTransaction)
-        .then(response => response.json())
-        .then(
-            (result) => {   
-                alert(`you have new transaction ${result.data}`)
-            },           
-            (error) => {              
-              return error
-            }
-          )
+    AddTransaction(statusInput).then((newTransaction)=>{
+        alert(newTransaction)
+    })
   };
 
   const handleChange=(evt)=>{
