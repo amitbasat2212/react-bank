@@ -5,32 +5,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Transaction from "./Transiction";
-import { fetchTransactions} from "../ApiClient/ApiClientTransactions";
+import { fetchTransactionsApi,deleteTransactionApi} from "../ApiClient/ApiClientTransactions";
 import { StyledTableCell,StyledTableRow } from "../Style/transactionStyle";
 import React, { useState, useEffect } from 'react'
 
 
-
-
 export default function Transictions() {
-    const [Transactions,setTransactions]=useState([])
+    const [Transactions,setTransactiosns]=useState([])
     const [error, setError] = useState(null);
     useEffect(() => {
         fetchTransactionFromApi();
       }, [])
       
     const fetchTransactionFromApi=()=>{
-        fetchTransactions().then((transactions)=>{
-            setTransactions(transactions)
+        fetchTransactionsApi().then((transactions)=>{
+            setTransactiosns(transactions)
         })
     }
 
-    const deleteTransaction=()=>{
-        
+    const deleteTransaction=(id)=>{
+        deleteTransactionApi(id).then(()=>{
+            fetchTransactionFromApi();
+        })
     }
       
     return (
-    <TableContainer component={Paper}>
+    <TableContainer  component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -43,7 +43,7 @@ export default function Transictions() {
         </TableHead>
         <TableBody>
           {Transactions.map((tr) => (
-            <Transaction deleteTransaction={deleteTransaction} transaction={tr}/>
+            <Transaction  deleteTransaction={deleteTransaction} transaction={tr}/>
           ))}
         </TableBody>
       </Table>

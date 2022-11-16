@@ -11,9 +11,10 @@ export default function Transiction(props) {
     const deleteTransaction=()=>{
         props.deleteTransaction(props.transaction.transaction_id)
     }
+    
     return (
         <StyledTableRow key={transaction.transaction_id}>
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell   component="th" scope="row">
           {transaction.transaction_vendor}
         </StyledTableCell>
         <StyledTableCell align="left">{transaction.transiction_amount}</StyledTableCell>

@@ -1,7 +1,7 @@
 
 const BASE_URI = 'http://localhost:8081/';
 
-export function fetchTransactions(){
+export function fetchTransactionsApi(){
     return fetch(`http://localhost:8081/transactions/`) 
     .then(res => res.json())
     .then(
@@ -14,17 +14,18 @@ export function fetchTransactions(){
     )
 }
 
-export function deleteTransaction(){
-    return fetch(`http://localhost:8081/transactions/`) 
+export function deleteTransactionApi(idTransaction){
+    console.log('http://localhost:8081/transactions/'+idTransaction)
+    return fetch('http://localhost:8081/transactions/'+idTransaction, { method: 'DELETE' })
     .then(res => res.json())
     .then(
-      (result) => {                   
-       return result
-      },           
-      (error) => {              
-        return error
-      }
-    )
+        (result) => {                   
+         return result
+        },           
+        (error) => {              
+          return error
+        }
+      )
 }
 
 

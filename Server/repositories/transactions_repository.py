@@ -9,7 +9,7 @@ def get_transaction_query(id_transaction):
             query_transaction = f"SELECT * from transactions WHERE transaction_id={id_transaction};"
             cursor.execute(query_transaction)
             result_transaction = cursor.fetchall()
-            transaction = transaction_utils.create_transaction(result_transaction)
+            transaction = transaction_utils.create_transactions(result_transaction)
             return transaction
 
     except TypeError as e:

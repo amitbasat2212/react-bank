@@ -16,7 +16,7 @@ async def add_transaction(request: Request):
     return transaction_service.add_transaction(transaction)
 
 
-@router.delete('/transactions/', status_code=200)
+@router.delete('/transactions/{id_transaction}', status_code=200)
 def delete_transaction(id_transaction):
      return transaction_service.delete_transaction(id_transaction)
 

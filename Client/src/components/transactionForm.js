@@ -19,7 +19,7 @@ export default function TransactionForm() {
     const [statusInput,setStatusInput]=useState({
         amount:0,
         category:"",
-        vendor:""s
+        vendor:""
     })
 
   const handleSubmit = () => {

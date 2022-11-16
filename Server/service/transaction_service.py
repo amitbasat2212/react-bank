@@ -10,4 +10,4 @@ def add_transaction(transaction):
 
 
 def delete_transaction(id_transaction):
-    return transactions_repository.delete_transaction(id_transaction)
+    return transactions_repository.delete_transaction_query(id_transaction)
