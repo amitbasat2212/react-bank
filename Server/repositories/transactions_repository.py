@@ -3,9 +3,19 @@ from Utils import transaction_utils
 from consts import transaction_const
 import ErrorHandaling
 
+import pymysql
+connection = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="",
+    db="bank",
+    charset="utf8",
+    cursorclass=pymysql.cursors.DictCursor
+)
+
 def get_transaction_query(id_transaction):
     try:
-        with data_base_manager.connection.cursor() as cursor:
+        with connection.cursor() as cursor:
             query_transaction = f"SELECT * from transactions WHERE transaction_id={id_transaction};"
             cursor.execute(query_transaction)
             result_transaction = cursor.fetchall()
@@ -18,7 +28,7 @@ def get_transaction_query(id_transaction):
 
 def get_transactions_query():
     try:
-        with data_base_manager.connection.cursor() as cursor:
+        with connection.cursor() as cursor:
             query_transactions = f"SELECT * from transactions;"
             cursor.execute(query_transactions)
             result_transactions = cursor.fetchall()
@@ -33,7 +43,7 @@ def get_transactions_query():
 def add_transaction_query(transaction_data):
     print(transaction_data)
     try:
-        with data_base_manager.connection.cursor() as cursor:
+        with connection.cursor() as cursor:
             insert_new_transaction = f'''INSERT IGNORE INTO transactions
             values('{transaction_const.transaction_id_defult}'
             ,'{transaction_data[transaction_const.amount]}'
@@ -57,7 +67,7 @@ def delete_transaction_query(id_transaction):
         if(len(get_transaction_query(id_transaction))==0):
             raise ErrorHandaling.the_row_dosent_excit()
         
-        with data_base_manager.connection.cursor() as cursor:
+        with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
             data_base_manager.connection.commit()

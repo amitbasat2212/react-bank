@@ -12,6 +12,8 @@ def create_balance_object(balance,total_amount_to_balance):
     return new_balance        
 
 def amount_of_all_transactions(transactions):
+
+    
     sum_transactions=0;    
     for transaction in transactions:
         sum_transactions=sum_transactions+float(transaction.get_transiction_amount())

@@ -1,11 +1,19 @@
-from .connection import data_base_manager
+
 from Utils import category_utils
 
-
+import pymysql
+connection = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="",
+    db="bank",
+    charset="utf8",
+    cursorclass=pymysql.cursors.DictCursor
+)
 
 def get_categories_query():
     try:
-        with data_base_manager.connection.cursor() as cursor:
+        with connection.cursor() as cursor:
             query_categories = f"SELECT * from categories;"
             cursor.execute(query_categories)
             result_categories = cursor.fetchall()

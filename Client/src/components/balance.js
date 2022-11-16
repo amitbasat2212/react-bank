@@ -4,12 +4,12 @@ export default function Balance(){
       const [balance,setBalance]=useState(0)
       useEffect(() => {
         getBalance().then((newBalance)=>{
-            setBalance(newBalance)
+            setBalance(newBalance[0])
         })
       }, [])
       
 
     return(
-        <div>balance : {balance}</div>
+        <div>balance : {balance.balance_amount}</div>
     )
 }

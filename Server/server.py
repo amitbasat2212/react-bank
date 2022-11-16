@@ -10,7 +10,7 @@ from controllers import balance_controller;
 
 
 app = FastAPI()
-origins = [
+origins = [ 
     "http://localhost:3000",
     "localhost:3000"
 ]
