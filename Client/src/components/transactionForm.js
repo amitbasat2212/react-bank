@@ -16,8 +16,8 @@ import TransactionButton from './buttons/transactionButton'
 const theme = createTheme();
 const withdraw="withdraw"
 const deposit="deposit"
-const withDrawOpertor = 1;
-const depositOpertor = -1;
+const withDrawOpertor = -1;
+const depositOpertor = 1;
 const amount = "amount"
 
 
@@ -116,8 +116,8 @@ export default function TransactionForm() {
               </Grid>
               
             </Grid>
-            <TransactionButton  handleAddTransaction={handleAddTransaction} color={'success.main'} buttonName={"withdraw"} />
-            <TransactionButton  handleAddTransaction={handleAddTransaction } color={'error.main'}  buttonName={"deposit"}/>
+            <TransactionButton  handleAddTransaction={handleAddTransaction} color={'error.main'} buttonName={"withdraw"} />
+            <TransactionButton  handleAddTransaction={handleAddTransaction } color={'success.main'}  buttonName={"deposit"}/>
             </Box>
         </Box>
       

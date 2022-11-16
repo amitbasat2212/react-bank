@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from controllers import categories_controller;
 from controllers import transictions_controller;
+from controllers import balance_controller;
 
 
 app = FastAPI()
@@ -28,6 +29,7 @@ app.add_middleware(
 
 app.include_router(categories_controller.router)
 app.include_router(transictions_controller.router)
+app.include_router(balance_controller.router)
 
 if __name__ == "__main__":
      uvicorn.run("server:app", host="0.0.0.0", port=8081,reload=True)
