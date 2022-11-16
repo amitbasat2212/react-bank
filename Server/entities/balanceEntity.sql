@@ -1,4 +1,4 @@
-use bank
+use bank;
 CREATE TABLE balance(        
-    balance_amount INT  PRIMARY KEY 
+    balance_amount INT PRIMARY KEY 
 );

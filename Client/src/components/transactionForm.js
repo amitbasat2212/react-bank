@@ -10,10 +10,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AddTransaction} from "../ApiClient/ApiClientTransactions";
-
+import TransactionButton from './buttons/transactionButton'
 
 
 const theme = createTheme();
+const withdraw="withdraw"
+const deposit="deposit"
+const withDrawOpertor = 1;
+const depositOpertor = -1;
+const amount = "amount"
+
 
 export default function TransactionForm() {
     const [statusInput,setStatusInput]=useState({
@@ -22,18 +28,34 @@ export default function TransactionForm() {
         vendor:""
     })
 
-  const handleSubmit = () => {
+  const changeStatusInput=(value,name)=>{
+    if(name==amount){
+        value = parseFloat(value)
+    }
+    console.log(value);
+    setStatusInput({
+        ...statusInput,
+        [name]: value
+    });
+  }  
+
+  const handleAddTransaction = (ActionName) => {
+    if(ActionName==withdraw){
+        changeStatusInput((parseFloat(statusInput.amount))*withDrawOpertor,amount)
+    }else{
+        changeStatusInput((parseFloat(statusInput.amount))*depositOpertor,amount)
+    }
+    console.log(statusInput)
     AddTransaction(statusInput).then((newTransaction)=>{
         alert(newTransaction)
     })
   };
 
+
+
   const handleChange=(evt)=>{
         const value = evt.target.value;
-        setStatusInput({
-            ...statusInput,
-            [evt.target.name]: value
-        });
+        changeStatusInput(value,evt.target.name)        
   }
 
   return (
@@ -52,7 +74,7 @@ export default function TransactionForm() {
           <Typography component="h1" variant="h5">
             insert transaction
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12}>
                 <TextField
@@ -91,16 +113,9 @@ export default function TransactionForm() {
               </Grid>
               
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            
-          </Box>
+            <TransactionButton  handleAddTransaction={handleAddTransaction} color={'success.main'} buttonName={"withdraw"} />
+            <TransactionButton  handleAddTransaction={handleAddTransaction } color={'error.main'}  buttonName={"deposit"}/>
+            </Box>
         </Box>
       
       </Container>
