@@ -5,9 +5,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Transaction from "./Transiction";
-import { fetchTransaction } from "../ApiClient";
+import { fetchTransactions} from "../ApiClient/ApiClientTransactions";
 import { StyledTableCell,StyledTableRow } from "../Style/transactionStyle";
 import React, { useState, useEffect } from 'react'
+
 
 
 
@@ -15,19 +16,19 @@ export default function Transictions() {
     const [Transactions,setTransactions]=useState([])
     const [error, setError] = useState(null);
     useEffect(() => {
-     fetch(`http://localhost:8081/transactions/`) 
-    .then(res => res.json())
-    .then(
-      (result) => {   
-                 
-        setTransactions(result)
-      },           
-      (error) => {              
-        setError(error)
-      }
-    )
+        fetchTransactionFromApi();
       }, [])
-  
+      
+    const fetchTransactionFromApi=()=>{
+        fetchTransactions().then((transactions)=>{
+            setTransactions(transactions)
+        })
+    }
+
+    const deleteTransaction=()=>{
+        
+    }
+      
     return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -42,7 +43,7 @@ export default function Transictions() {
         </TableHead>
         <TableBody>
           {Transactions.map((tr) => (
-            <Transaction transaction={tr}/>
+            <Transaction deleteTransaction={deleteTransaction} transaction={tr}/>
           ))}
         </TableBody>
       </Table>
