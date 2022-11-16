@@ -1,18 +1,15 @@
-import { fetchTransactionsApi} from "../ApiClient/ApiClientTransactions";
+import {getBalance} from "../ApiClient/ApiClientBalance";
 import React, { useState, useEffect } from 'react'
 export default function Balance(){
-      
+      const [balance,setBalance]=useState(0)
       useEffect(() => {
-        
-      }, [])
-      const calculateTheBalance=()=>{
-        const balanceAmount=0
-        Transactions.forEach((tr)=>{
-
+        getBalance().then((newBalance)=>{
+            setBalance(newBalance)
         })
-      }
+      }, [])
+      
 
     return(
-        <div></div>
+        <div>balance : {balance}</div>
     )
 }

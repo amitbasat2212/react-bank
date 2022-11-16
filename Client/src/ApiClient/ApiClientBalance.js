@@ -1,8 +1,8 @@
-const categoriesUrl ='http://localhost:8081/categories/'
+const balanceUrl ='http://localhost:8081/balance/'
 
 
 export function getBalance(){
-    return fetch(categoriesUrl) 
+    return fetch(balanceUrl) 
     .then(res => res.json())
     .then(
       (result) => {                    
