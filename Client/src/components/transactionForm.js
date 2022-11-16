@@ -31,22 +31,25 @@ export default function TransactionForm() {
   const changeStatusInput=(value,name)=>{
     if(name==amount){
         value = parseFloat(value)
-    }
-    console.log(value);
+    }    
     setStatusInput({
         ...statusInput,
         [name]: value
-    });
+    })
   }  
 
   const handleAddTransaction = (ActionName) => {
+    const category = statusInput.category
+    const vendor = statusInput.vendor
+    let amount=0;
     if(ActionName==withdraw){
-        changeStatusInput((parseFloat(statusInput.amount))*withDrawOpertor,amount)
+        amount = parseFloat(statusInput.amount)*withDrawOpertor        
     }else{
-        changeStatusInput((parseFloat(statusInput.amount))*depositOpertor,amount)
+        amount = parseFloat(statusInput.amount)*depositOpertor
     }
-    console.log(statusInput)
-    AddTransaction(statusInput).then((newTransaction)=>{
+    const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
+    
+    AddTransaction(statusNewTransaction).then((newTransaction)=>{
         alert(newTransaction)
     })
   };

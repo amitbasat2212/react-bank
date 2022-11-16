@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Balance from './Balance';
 
 const pages = ['transactions', 'operations', 'breakdown'];
 
@@ -91,8 +92,9 @@ export default function NavBar() {
               </Link>
             ))}
           </Box>
-       
+          <Balance/>
         </Toolbar>
+       
       </Container>
     </AppBar>
   );
