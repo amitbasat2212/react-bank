@@ -41,7 +41,7 @@ def get_transactions_query():
 
 
 def add_transaction_query(transaction_data):
-    print(transaction_data)
+   
     try:
         with connection.cursor() as cursor:
             insert_new_transaction = f'''INSERT IGNORE INTO transactions

@@ -1,2 +1,2 @@
 use bank;
-DROP TABLE transactions,categories
+DROP TABLE balance,transactions,categories

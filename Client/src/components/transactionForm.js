@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Button from '@mui/material/Button';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import  { useState, useEffect } from 'react'
@@ -9,16 +9,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AddTransaction} from "../ApiClient/ApiClientTransactions";
+import {AddTransaction} from "../ApiClient/ApiClientTransactions";
+import {setBalance,getBalance} from "../ApiClient/ApiClientBalance";
 import TransactionButton from './buttons/transactionButton'
 
 
 const theme = createTheme();
 const withdraw="withdraw"
-const deposit="deposit"
 const withDrawOpertor = -1;
 const depositOpertor = 1;
 const amount = "amount"
+const balance="balance_amount"
 
 
 export default function TransactionForm() {
@@ -38,6 +39,17 @@ export default function TransactionForm() {
     })
   }  
 
+  const UpdateBalance=(amount,newTransaction)=>{
+    let newBalace=0
+    getBalance().then((oldBalance)=>{
+        newBalace=oldBalance[balance]+amount
+        setBalance([{[balance]:newBalace}]).then(()=>{
+            alert(newTransaction)   
+        })
+        
+    })
+  }
+
   const handleAddTransaction = (ActionName) => {
     const category = statusInput.category
     const vendor = statusInput.vendor
@@ -50,8 +62,10 @@ export default function TransactionForm() {
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
     
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
-        alert(newTransaction)
+        UpdateBalance(amount,newTransaction)
+        
     })
+
 
 
   };

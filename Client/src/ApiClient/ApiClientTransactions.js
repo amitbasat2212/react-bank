@@ -29,11 +29,11 @@ export function deleteTransactionApi(idTransaction){
 }
 
 
-export function AddTransaction(statusInput){
+export function AddTransaction(Transaction){
     const newTransaction = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(statusInput)
+        body: JSON.stringify(Transaction)
     };
     return fetch(transcationsUrl, newTransaction)
         .then(response => response.json())

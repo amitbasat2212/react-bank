@@ -29,7 +29,7 @@ export default function NavBar() {
   
   useEffect(() => {
     getBalance().then((newBalance)=>{
-        setBalance(newBalance[0])
+        setBalance(newBalance)
     })
   }, [])
 
