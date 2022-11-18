@@ -6,11 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import  { useState, useEffect } from 'react'
+
 import Container from '@mui/material/Container';
 
 import Button from '@mui/material/Button';
-import {getBalance} from "../ApiClient/ApiClientBalance";
+
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Balance from './Balance';
@@ -18,20 +18,11 @@ import Balance from './Balance';
 const pages = ['transactions', 'operations', 'breakdown'];
 
 
-export default function NavBar() {
+export default function NavBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [balance,setBalance]=useState(0)  
-
-  
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-  
-  useEffect(() => {
-    getBalance().then((newBalance)=>{
-        setBalance(newBalance)
-    })
-  }, [])
+  }; 
 
 
 
@@ -99,7 +90,7 @@ export default function NavBar() {
               </Link>
             ))}
           </Box>
-          <Balance balance={balance}/>
+          <Balance balance={props.balance}/>
         </Toolbar>
        
       </Container>

@@ -57,7 +57,8 @@ def add_transaction_query(transaction_data):
             connection.commit()
             
             new_transaction = transaction_utils.create_transaction_dto(transaction_data)
-            balance_repository.update_the_balance_query(new_transaction.transiction_amount)
+            
+            balance_repository.update_the_balance_query(new_transaction.transiction_amount,transaction_const.balance_positive)
 
 
             return new_transaction
@@ -77,7 +78,7 @@ def delete_transaction_query(id_transaction):
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
             connection.commit()
-            balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount)
+            balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount,transaction_const.balance_nagitive)
 
             return {"succes": 200}
 

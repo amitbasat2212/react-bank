@@ -8,3 +8,5 @@ amount="amount"
 vendor="vendor"
 transaction_not_delete=False
 transaction_id_defult=0
+balance_positive=1;
+balance_nagitive=-1;

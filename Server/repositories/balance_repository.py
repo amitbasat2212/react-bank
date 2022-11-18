@@ -17,11 +17,11 @@ connection = pymysql.connect(
     
 
 
-def update_the_balance_query(amount_to_update):
+def update_the_balance_query(amount_to_update,delete_or_add_transaction):
     try:
         with connection.cursor() as cursor:
             old_balance = get_balance_query();
-            new_balance=old_balance.balance_amount+amount_to_update
+            new_balance=old_balance.balance_amount+(amount_to_update)*delete_or_add_transaction
             insert_new_balance = f'UPDATE balance SET balance_amount ={new_balance}'
             cursor.execute(insert_new_balance)
             connection.commit()            
