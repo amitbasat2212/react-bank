@@ -77,7 +77,7 @@ def delete_transaction_query(id_transaction):
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
             connection.commit()
-            balance_repository.update_the_balance_query(transaction_to_delete[0].transaction_amount)
+            balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount)
 
             return {"succes": 200}
 
