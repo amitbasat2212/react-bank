@@ -2,6 +2,7 @@
 from Utils import transaction_utils
 from consts import transaction_const
 from repositories import balance_repository
+from repositories import category_repository
 import ErrorHandaling
 
 import pymysql
@@ -60,6 +61,7 @@ def add_transaction_query(transaction_data):
             
             balance_repository.update_the_balance_query(new_transaction.transiction_amount,transaction_const.balance_positive)
 
+            category_repository.update_category_spending(new_transaction.transiction_amount,new_transaction.category_name,transaction_const.balance_positive)
 
             return new_transaction
 
