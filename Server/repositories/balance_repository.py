@@ -12,9 +12,7 @@ connection = pymysql.connect(
     cursorclass=pymysql.cursors.DictCursor
 )
 
-
-
-    
+   
 
 
 def update_the_balance_query(amount_to_update,delete_or_add_transaction):

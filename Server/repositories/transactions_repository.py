@@ -51,7 +51,7 @@ def add_transaction_query(transaction_data):
             ,'{transaction_data[transaction_const.amount]}'
             ,'{transaction_data[transaction_const.category]}'
             ,'{transaction_data[transaction_const.vendor]}'
-            ,'{transaction_const.transaction_not_delete}')'''
+            )'''
 
             cursor.execute(insert_new_transaction)
             connection.commit()

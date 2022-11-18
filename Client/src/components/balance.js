@@ -1,8 +1,9 @@
 
-
-export default function Balance(props){     
+import '../Style/balance.css'
+export default function Balance(props){    
     
     return(
-        <div>balance : {props.balance.balance_amount}</div>
+        
+        <div className={(props.balance.balance_amount<0 ? 'negative' : 'positive')}>balance :{props.balance.balance_amount}</div>
     )
 }
