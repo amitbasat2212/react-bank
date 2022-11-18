@@ -1,4 +1,4 @@
-from .connection import data_base_manager
+
 from Utils import transaction_utils
 from consts import transaction_const
 import ErrorHandaling
@@ -52,7 +52,7 @@ def add_transaction_query(transaction_data):
             ,'{transaction_const.transaction_not_delete}')'''
 
             cursor.execute(insert_new_transaction)
-            data_base_manager.connection.commit()
+            connection.commit()
             
             new_transaction = transaction_utils.create_transactions(transaction_data)
             return new_transaction
@@ -70,7 +70,7 @@ def delete_transaction_query(id_transaction):
         with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
-            data_base_manager.connection.commit()
+            connection.commit()
             return {"succes": 200}
 
     except TypeError as e:

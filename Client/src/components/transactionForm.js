@@ -52,9 +52,11 @@ export default function TransactionForm() {
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
         alert(newTransaction)
     })
+
+
   };
 
-
+  
 
   const handleChange=(evt)=>{
         const value = evt.target.value;
