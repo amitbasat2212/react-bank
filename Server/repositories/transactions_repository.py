@@ -1,6 +1,7 @@
 
 from Utils import transaction_utils
 from consts import transaction_const
+from repositories import balance_repository
 import ErrorHandaling
 
 import pymysql
@@ -24,6 +25,7 @@ def get_transaction_query(id_transaction):
 
     except TypeError as e:
         return e
+
 
 
 def get_transactions_query():
@@ -54,7 +56,10 @@ def add_transaction_query(transaction_data):
             cursor.execute(insert_new_transaction)
             connection.commit()
             
-            new_transaction = transaction_utils.create_transactions(transaction_data)
+            new_transaction = transaction_utils.create_transaction_dto(transaction_data)
+            balance_repository.update_the_balance_query(new_transaction.transiction_amount)
+
+
             return new_transaction
 
     except TypeError as e:
@@ -64,13 +69,16 @@ def add_transaction_query(transaction_data):
 
 def delete_transaction_query(id_transaction):    
     try:
-        if(len(get_transaction_query(id_transaction))==0):
+        transaction_to_delete=get_transaction_query(id_transaction);
+        if(len(transaction_to_delete)==0):
             raise ErrorHandaling.the_row_dosent_excit()
         
         with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
             connection.commit()
+            balance_repository.update_the_balance_query(transaction_to_delete[0].transaction_amount)
+
             return {"succes": 200}
 
     except TypeError as e:

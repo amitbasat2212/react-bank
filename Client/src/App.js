@@ -1,5 +1,5 @@
 
-import Transictions from "./components/Transictions";
+import Transictions from "./components/transictions";
 import NavBar from "./components/NavBar";
 import './App.css';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom'

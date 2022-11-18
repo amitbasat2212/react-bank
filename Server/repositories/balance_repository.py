@@ -1,7 +1,7 @@
 
 from Utils import balance_utils
-
 from consts import balance_consts
+
 import pymysql
 connection = pymysql.connect(
     host="localhost",
@@ -14,15 +14,18 @@ connection = pymysql.connect(
 
 
 
+    
 
 
-def set_the_balance_query(new_balance):
+def update_the_balance_query(amount_to_update):
     try:
         with connection.cursor() as cursor:
-            insert_new_balance = f'UPDATE balance SET balance_amount ={new_balance[0][balance_consts.balance_amount]}'
+            old_balance = get_balance_query();
+            new_balance=old_balance.balance_amount+amount_to_update
+            insert_new_balance = f'UPDATE balance SET balance_amount ={new_balance}'
             cursor.execute(insert_new_balance)
             connection.commit()            
-            the_new_balance = balance_utils.create_balance(new_balance)
+            the_new_balance = balance_utils.create_balance({balance_consts.balance_amount:new_balance})
             return the_new_balance
 
     except TypeError as e:
@@ -35,7 +38,7 @@ def get_balance_query():
             query_balance = f"SELECT * from balance;"
             cursor.execute(query_balance)
             result_balance = cursor.fetchall()            
-            balance = balance_utils.create_balance(result_balance)
-            return balance
+            balance = balance_utils.create_balances(result_balance)
+            return balance[0]
     except TypeError as e:
         return e

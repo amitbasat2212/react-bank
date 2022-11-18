@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddTransaction} from "../ApiClient/ApiClientTransactions";
-import {setBalance,getBalance} from "../ApiClient/ApiClientBalance";
+
 import TransactionButton from './buttons/transactionButton'
 
 
@@ -39,16 +39,6 @@ export default function TransactionForm() {
     })
   }  
 
-  const UpdateBalance=(amount,newTransaction)=>{
-    let newBalace=0
-    getBalance().then((oldBalance)=>{
-        newBalace=oldBalance[balance]+amount
-        setBalance([{[balance]:newBalace}]).then(()=>{
-            alert(newTransaction)   
-        })
-        
-    })
-  }
 
   const handleAddTransaction = (ActionName) => {
     const category = statusInput.category
@@ -62,7 +52,7 @@ export default function TransactionForm() {
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
     
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
-        UpdateBalance(amount,newTransaction)
+        alert(newTransaction)   
         
     })
 
