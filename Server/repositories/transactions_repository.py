@@ -59,9 +59,9 @@ def add_transaction_query(transaction_data):
             
             new_transaction = transaction_utils.create_transaction_dto(transaction_data)
             
-            balance_repository.update_the_balance_query(new_transaction.transiction_amount,transaction_const.balance_positive)
+            balance_repository.update_the_balance_query(new_transaction.transiction_amount,transaction_const.positive_to_add)
 
-            category_repository.update_category_spending(new_transaction.transiction_amount,new_transaction.category_name,transaction_const.balance_positive)
+            category_repository.update_category_spending(new_transaction.transiction_amount,new_transaction.category_name,transaction_const.positive_to_add)
 
             return new_transaction
 
@@ -73,14 +73,15 @@ def add_transaction_query(transaction_data):
 def delete_transaction_query(id_transaction):    
     try:
         transaction_to_delete=get_transaction_query(id_transaction);
-        if(len(transaction_to_delete)==0):
-           ErrorHandlingTransaction.row_is_not_in_table()
+        ErrorHandlingTransaction.row_is_not_in_table(transaction_to_delete)
         
         with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
             cursor.execute(delete_transaction)           
             connection.commit()
-            balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount,transaction_const.balance_nagitive)
+            
+            balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount,transaction_const.nagitive_to_return)
+            category_repository.update_category_spending(transaction_to_delete[0].transiction_amount,transaction_to_delete[0].category_name,transaction_const.nagitive_to_return)
 
             return {"succes": 200}
 
