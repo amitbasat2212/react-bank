@@ -10,6 +10,7 @@ export default function Categories() {
   
     const [Categories,setCategories]=useState([])
     const [error, setError] = useState(null);
+    
     useEffect(() => {
         getCategories().then((categories)=>{
             setCategories(categories)

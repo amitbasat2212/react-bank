@@ -11,15 +11,17 @@ import Container from '@mui/material/Container';
 
 import Button from '@mui/material/Button';
 
-import MenuItem from '@mui/material/MenuItem';
+
 import AdbIcon from '@mui/icons-material/Adb';
 import Balance from './Balance';
+import NavBarItem from './buttons/NavBarItem';
 
 const pages = ['transactions', 'operations', 'breakdown'];
 
 
 export default function NavBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   }; 
@@ -31,8 +33,7 @@ export default function NavBar(props) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-    
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>    
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -52,9 +53,7 @@ export default function NavBar(props) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+               <NavBarItem page={page} handleCloseNavMenu={handleCloseNavMenu}/>
               ))}
             </Menu>
           </Box>

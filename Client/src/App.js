@@ -1,12 +1,13 @@
 
 import Transictions from "./components/transictions";
+import TransactionForm from "./components/transactionForm";
 import NavBar from "./components/NavBar";
 import './App.css';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
-import Opertions from "./components/Opertions";
-import BreakDown from "./components/BreakDown";
+
 import  { useState, useEffect } from 'react'
 import {getBalance} from "./ApiClient/ApiClientBalance";
+import Categories from "./components/Categories";
 
 function App() {
   
@@ -29,9 +30,9 @@ function App() {
       <div>     
       <Route path="/transactions" exact render={() => <Transictions
        />} />   
-      <Route path="/operations" exact render={() => <Opertions
+      <Route path="/operations" exact render={() => <Categories
        />} />  
-      <Route path="/breakdown" exact render={() => <BreakDown
+      <Route path="/breakdown" exact render={() => <TransactionForm
        />} />  
 
       </div>       

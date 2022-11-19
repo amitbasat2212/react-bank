@@ -9,6 +9,7 @@ from controllers import transictions_controller;
 from controllers import balance_controller;
 
 
+
 app = FastAPI()
 origins = [ 
     "http://localhost:3000",
