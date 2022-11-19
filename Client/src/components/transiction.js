@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Button from '@mui/material/Button';
+
 import Box from '@mui/material/Box';
 import { StyledTableCell,StyledTableRow } from "../Style/transactionStyle";
+import DeleteButton from './buttons/DeleteButton';
 
 
 
@@ -21,9 +22,7 @@ export default function Transiction(props) {
         <StyledTableCell align="left">{transaction.category_name}</StyledTableCell>
        <StyledTableCell>
         <Box textAlign='left'>
-          <Button onClick={deleteTransaction} justify="left" variant="contained" color="error">
-             delete
-          </Button>
+          <DeleteButton deleteTransaction={deleteTransaction}/>
         </Box>
       </StyledTableCell>
        
