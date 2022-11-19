@@ -3,7 +3,7 @@ from Utils import transaction_utils
 from consts import transaction_const
 from repositories import balance_repository
 from repositories import category_repository
-import ErrorHandaling
+from ErrorHandling import ErrorHandlingTransaction
 
 import pymysql
 connection = pymysql.connect(
@@ -74,7 +74,7 @@ def delete_transaction_query(id_transaction):
     try:
         transaction_to_delete=get_transaction_query(id_transaction);
         if(len(transaction_to_delete)==0):
-            raise ErrorHandaling.the_row_dosent_excit()
+           ErrorHandlingTransaction.row_is_not_in_table()
         
         with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"

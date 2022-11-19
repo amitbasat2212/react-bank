@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from fastapi import Request
 from service import transaction_service
+from ErrorHandling import ErrorHandlingTransaction
 
 router = APIRouter()
 
@@ -13,7 +14,9 @@ def get_transactions():
 @router.post('/transactions/', status_code=201)
 async def add_transaction(request: Request):
     transaction = await request.json()
+    ErrorHandlingTransaction.check_add_transaction(transaction)
     return transaction_service.add_transaction(transaction)
+
 
 
 @router.delete('/transactions/{id_transaction}', status_code=200)

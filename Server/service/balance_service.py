@@ -2,4 +2,7 @@ from repositories import balance_repository
 
 
 def get_balance():
-    return balance_repository.get_balance_query();
+    try:
+     return balance_repository.get_balance_query();
+    except TypeError as e:
+        return e      
