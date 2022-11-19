@@ -10,16 +10,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddTransaction} from "../ApiClient/ApiClientTransactions";
+import * as Constants from '../consts/transactionFormConsts'
 
 import TransactionButton from './buttons/transactionButton'
 
 
 const theme = createTheme();
-const withdraw="withdraw"
-const withDrawOpertor = -1;
-const depositOpertor = 1;
-const amount = "amount"
-const balance="balance_amount"
+
 
 
 export default function TransactionForm() {
@@ -30,7 +27,7 @@ export default function TransactionForm() {
     })
 
   const changeStatusInput=(value,name)=>{
-    if(name==amount){
+    if(name==Constants.amount){
         value = parseFloat(value)
     }    
     setStatusInput({
@@ -44,10 +41,10 @@ export default function TransactionForm() {
     const category = statusInput.category
     const vendor = statusInput.vendor
     let amount=0;
-    if(ActionName==withdraw){
-        amount = parseFloat(statusInput.amount)*withDrawOpertor        
+    if(ActionName==Constants.withdraw){
+        amount = parseFloat(statusInput.amount)*Constants.withDrawOpertor        
     }else{
-        amount = parseFloat(statusInput.amount)*depositOpertor
+        amount = parseFloat(statusInput.amount)*Constants.depositOpertor
     }
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
     

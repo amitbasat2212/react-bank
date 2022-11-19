@@ -1,20 +1,15 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom'
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-
 import Container from '@mui/material/Container';
-
-import Button from '@mui/material/Button';
-
-
 import AdbIcon from '@mui/icons-material/Adb';
 import Balance from './Balance';
 import NavBarItem from './buttons/NavBarItem';
+import NavBarButton from './buttons/NavBarButton';
 
 const pages = ['transactions', 'operations', 'breakdown'];
 
@@ -78,15 +73,7 @@ export default function NavBar(props) {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-             <Link to={`/${page}`} >
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button >
-              </Link>
+                <NavBarButton page={page} handleCloseNavMenu={handleCloseNavMenu}/>
             ))}
           </Box>
           <Balance balance={props.balance}/>
