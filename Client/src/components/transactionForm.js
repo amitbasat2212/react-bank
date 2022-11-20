@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddTransaction} from "../ApiClient/ApiClientTransactions";
+import {validateFormTransaction} from "../Varification/TransactionFormVarifiction";
 import * as Constants from '../consts/transactionFormConsts'
 
 import TransactionButton from './buttons/transactionButton'
@@ -37,7 +38,12 @@ export default function TransactionForm(props) {
   }  
 
 
-  const handleAddTransaction = (ActionName) => {
+  const checkValidation=(transaction)=>{
+    const error=validateFormTransaction(transaction) 
+    return error;
+  }
+
+  const handleAddTransaction = (ActionName) => {  
     const category = statusInput.category
     const vendor = statusInput.vendor
     let amount=0;
@@ -47,11 +53,19 @@ export default function TransactionForm(props) {
         amount = parseFloat(statusInput.amount)*Constants.depositOpertor
     }
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
+  
     
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
-        alert("you create a transaction!")
-        props.serBalanceEveryChange()   
-        
+        const error = checkValidation(statusNewTransaction)
+        if(error instanceof Error){
+            alert(error)
+        }else{
+            alert("you create a transaction!")
+            props.serBalanceEveryChange()   
+            
+        }
+    
+       
     })
 
 
@@ -92,6 +106,8 @@ export default function TransactionForm(props) {
                   label="transaction amount"
                   name="amount"
                   autoComplete="amount"
+                  type="number"
+                  min={0}
                   onChange={handleChange}
                 />
               </Grid>
