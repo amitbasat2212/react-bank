@@ -1,6 +1,5 @@
 
 from fastapi import FastAPI
-from origins import origins_const
 
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn

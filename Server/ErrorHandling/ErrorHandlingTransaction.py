@@ -1,18 +1,6 @@
 from ErrorHandling import ErrorResponse
 from consts import transaction_const
-
-
-
-def check_add_transaction(transaction):
-    # if not str(transaction[transaction_const.amount]).isnumeric() :
-    #     ErrorResponse.error_response("the amount is not a number",404)
-
-    if str(transaction[transaction_const.category]).isnumeric():
-        ErrorResponse.error_response("the category is not a string",404)  
-
-
-    if str(transaction[transaction_const.vendor]).isnumeric() :
-        ErrorResponse.error_response("the vendor is not a String",404)        
+  
 
 
 

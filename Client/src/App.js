@@ -4,7 +4,7 @@ import TransactionForm from "./components/transactionForm";
 import NavBar from "./components/NavBar";
 import './App.css';
 import { BrowserRouter as Router, Route,Link} from 'react-router-dom'
-
+import {getCategories} from "./ApiClient/ApiClientCategories";
 import  { useState, useEffect } from 'react'
 import {getBalance} from "./ApiClient/ApiClientBalance";
 import Categories from "./components/Categories";
@@ -12,6 +12,7 @@ import Categories from "./components/Categories";
 function App() {
   
   const [balance,setBalance]=useState(0)  
+  const [categories,setCategories]=useState([])
  
   const setTheBalance=()=>{
     getBalance().then((newBalance)=>{
@@ -22,8 +23,12 @@ function App() {
     setTheBalance()
   }
 
+  
   useEffect(() => {
     setTheBalance();
+    getCategories().then((categories)=>{
+        setCategories(categories)
+    })
   }, [])
   
 
@@ -36,11 +41,11 @@ function App() {
           <NavBar balance={balance}/>                  
       </div> 
       <div>     
-      <Route path="/transactions" exact render={() => <Transictions serBalanceEveryChange={serBalanceEveryChange}
+      <Route path="/transactions" exact render={() => <Transictions  serBalanceEveryChange={serBalanceEveryChange}
        />} />   
       <Route path="/operations" exact render={() => <Categories
        />} />  
-      <Route path="/breakdown" exact render={() => <TransactionForm serBalanceEveryChange={serBalanceEveryChange}
+      <Route path="/breakdown" exact render={() => <TransactionForm categories={categories} serBalanceEveryChange={serBalanceEveryChange}
        />} />  
 
       </div>       

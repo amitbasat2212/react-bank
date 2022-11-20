@@ -13,8 +13,7 @@ def get_transactions():
 
 @router.post('/transactions/', status_code=201)
 async def add_transaction(request: Request):
-    transaction = await request.json()
-    ErrorHandlingTransaction.check_add_transaction(transaction)
+    transaction = await request.json()   
     return transaction_service.add_transaction(transaction)
 
 

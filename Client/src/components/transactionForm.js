@@ -10,10 +10,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddTransaction} from "../ApiClient/ApiClientTransactions";
+
 import {validateFormTransaction} from "../Varification/TransactionFormVarifiction";
 import * as Constants from '../consts/transactionFormConsts'
-
+import InputLabel from '@mui/material/InputLabel';
 import TransactionButton from './buttons/transactionButton'
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 
 
 const theme = createTheme();
@@ -22,10 +27,11 @@ const theme = createTheme();
 
 export default function TransactionForm(props) {
     const [statusInput,setStatusInput]=useState({
-        amount:0,
-        category:"",
+        amount:0,        
         vendor:""
     })
+  const [categoryChoose,setCategoryChoose]=useState('')
+    
 
   const changeStatusInput=(value,name)=>{
     if(name==Constants.amount){
@@ -44,7 +50,7 @@ export default function TransactionForm(props) {
   }
 
   const handleAddTransaction = (ActionName) => {  
-    const category = statusInput.category
+    const category = categoryChoose
     const vendor = statusInput.vendor
     let amount=0;
     if(ActionName==Constants.withdraw){
@@ -73,10 +79,14 @@ export default function TransactionForm(props) {
   };
 
   
+  const handleCategories=(evt)=>{
+    const value = evt.target.value;
+    setCategoryChoose(value,evt.target.name)   
+  }
 
   const handleChange=(evt)=>{
-        const value = evt.target.value;
-        changeStatusInput(value,evt.target.name)        
+    const value = evt.target.value;
+    changeStatusInput(value,evt.target.name)        
   }
 
   return (
@@ -110,19 +120,23 @@ export default function TransactionForm(props) {
                   min={0}
                   onChange={handleChange}
                 />
-              </Grid>
+              </Grid>              
               
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="category"
-                  label="transaction category"
-                  name="category"
-                  autoComplete="category"
-                  onChange={handleChange}
-                />
-              </Grid>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+                <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={categoryChoose}
+                label="Cateory"
+                onChange={handleCategories}
+                >
+                {props.categories.map((c) => (
+                    <MenuItem value={c.category_name}>{c.category_name}</MenuItem>
+                ))}
+                </Select>
+            </FormControl>
+    
               <Grid item xs={12}>
                 <TextField
                   required
