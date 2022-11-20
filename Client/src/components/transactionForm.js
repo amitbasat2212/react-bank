@@ -105,9 +105,9 @@ export default function TransactionForm(props) {
           <Typography component="h1" variant="h5">
             insert transaction
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3,width:370 }}>
             <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12}  >
                 <TextField 
                   required
                   fullWidth
@@ -120,11 +120,13 @@ export default function TransactionForm(props) {
                   min={0}
                   onChange={handleChange}
                 />
-              </Grid>              
-              
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              </Grid>            
+            <Grid container spacing={2}>
+            <Grid item xs={12} >
+            <FormControl sx={{width:370,ml:2,mt:2}}  >
                 <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
-                <Select
+                <Select 
+                
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 value={categoryChoose}
@@ -136,7 +138,9 @@ export default function TransactionForm(props) {
                 ))}
                 </Select>
             </FormControl>
-    
+            </Grid>
+            </Grid>
+            
               <Grid item xs={12}>
                 <TextField
                   required
