@@ -10,7 +10,7 @@ import { StyledTableCell,StyledTableRow } from "../Style/transactionStyle";
 import React, { useState, useEffect } from 'react'
 
 
-export default function Transictions() {
+export default function Transictions(props) {
     const [Transactions,setTransactiosns]=useState([])
     const [error, setError] = useState(null);
     
@@ -27,6 +27,7 @@ export default function Transictions() {
     const deleteTransaction=(id)=>{
         deleteTransactionApi(id).then(()=>{
             fetchTransactionFromApi();
+            props.serBalanceEveryChange()
         })
     }
       

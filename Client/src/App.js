@@ -13,28 +13,34 @@ function App() {
   
   const [balance,setBalance]=useState(0)  
  
-  const SetBalnaceEveryTime=()=>{
+  const setTheBalance=()=>{
     getBalance().then((newBalance)=>{
         setBalance(newBalance)
     })
   }
- 
+  const serBalanceEveryChange=()=>{
+    setTheBalance()
+  }
+
+  useEffect(() => {
+    setTheBalance();
+  }, [])
+  
 
   return (
     
     <Router>
     <div className="App">
-        {SetBalnaceEveryTime()}
       <div id="home-background"></div>
       <div id="main-links">
           <NavBar balance={balance}/>                  
       </div> 
       <div>     
-      <Route path="/transactions" exact render={() => <Transictions
+      <Route path="/transactions" exact render={() => <Transictions serBalanceEveryChange={serBalanceEveryChange}
        />} />   
       <Route path="/operations" exact render={() => <Categories
        />} />  
-      <Route path="/breakdown" exact render={() => <TransactionForm
+      <Route path="/breakdown" exact render={() => <TransactionForm serBalanceEveryChange={serBalanceEveryChange}
        />} />  
 
       </div>       

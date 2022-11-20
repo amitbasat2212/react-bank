@@ -19,7 +19,7 @@ const theme = createTheme();
 
 
 
-export default function TransactionForm() {
+export default function TransactionForm(props) {
     const [statusInput,setStatusInput]=useState({
         amount:0,
         category:"",
@@ -49,7 +49,8 @@ export default function TransactionForm() {
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
     
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
-        alert("you create a transaction!")   
+        alert("you create a transaction!")
+        props.serBalanceEveryChange()   
         
     })
 
@@ -86,7 +87,7 @@ export default function TransactionForm() {
                 <TextField 
                   required
                   fullWidth
-                  
+
                   id="amount"
                   label="transaction amount"
                   name="amount"
