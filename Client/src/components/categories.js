@@ -19,10 +19,11 @@ export default function Categories() {
       
       
   return (
-    <Card sx={{ maxWidth: 345, m: 4 }}>     
+    <Card  sx={{ maxWidth: 500,height:400, m: 4 }}>     
       <CardContent sx={{height: 100}} >  
-      <Box sx={{ boxShadow: 8 }}></Box>       
-        <Typography variant="body2" color="text.secondary">
+      <Box sx={{ boxShadow: 8 }}></Box> 
+      <Typography  sx={{m:2}} variant="h4">categories</Typography>      
+        <Typography  variant="body2" color="text.secondary">
         {Categories.map((ca) => (
             <Categorey categorey={ca}/>
         ))}                    

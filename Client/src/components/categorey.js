@@ -7,7 +7,7 @@ export default function Categorey(props){
     const [categorey] = useState(props.categorey) 
     return(       
                 <Box sx={{ boxShadow: 1 }}>
-                <Typography variant="h8" component="h2">              
+                <Typography  sx={{m:4}} variant="h8" component="h2">              
                 {`${categorey.category_name}:${categorey.category_money_spend}`}
                 </Typography>            
                 </Box>                           

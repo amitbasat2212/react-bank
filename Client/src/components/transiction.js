@@ -15,11 +15,11 @@ export default function Transiction(props) {
     
     return (
         <StyledTableRow key={transaction.transaction_id}>
-        <StyledTableCell   component="th" scope="row">
+        <StyledTableCell style={{ fontSize:20, fontWeight: 'bold' }}  component="th" scope="row">
           {transaction.transaction_vendor}
         </StyledTableCell>
-        <StyledTableCell align="left">{transaction.transiction_amount}</StyledTableCell>
-        <StyledTableCell align="left">{transaction.category_name}</StyledTableCell>
+        <StyledTableCell style={{ fontSize:20, fontWeight: 'bold' }} align="left">{transaction.transiction_amount}</StyledTableCell>
+        <StyledTableCell style={{ fontSize:20, fontWeight: 'bold' }} align="left">{transaction.category_name}</StyledTableCell>
        <StyledTableCell>
         <Box textAlign='left'>
           <DeleteButton deleteTransaction={deleteTransaction}/>

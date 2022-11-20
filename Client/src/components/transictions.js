@@ -36,7 +36,7 @@ export default function Transictions(props) {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">transaction vendor</StyledTableCell>
+            <StyledTableCell  align="left">transaction vendor</StyledTableCell>
             <StyledTableCell align="left">transaction amount&nbsp;</StyledTableCell>
             <StyledTableCell align="left">transaction category&nbsp;</StyledTableCell>           
             <StyledTableCell align="left">delete transaction&nbsp;</StyledTableCell>
