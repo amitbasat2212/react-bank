@@ -12,17 +12,19 @@ import Categories from "./components/Categories";
 function App() {
   
   const [balance,setBalance]=useState(0)  
-  
-  
-  useEffect(() => {
+ 
+  const SetBalnaceEveryTime=()=>{
     getBalance().then((newBalance)=>{
         setBalance(newBalance)
     })
-  }, [])
+  }
+ 
 
   return (
+    
     <Router>
     <div className="App">
+        {SetBalnaceEveryTime()}
       <div id="home-background"></div>
       <div id="main-links">
           <NavBar balance={balance}/>                  

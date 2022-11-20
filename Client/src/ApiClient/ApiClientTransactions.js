@@ -23,7 +23,7 @@ export function deleteTransactionApi(idTransaction){
          return result
         },           
         (error) => {              
-          return error
+           alert(error)
         }
       )
 }
@@ -42,7 +42,7 @@ export function AddTransaction(Transaction){
                return result
             },           
             (error) => {              
-              return error
+              alert(error)
             }
           )
 }

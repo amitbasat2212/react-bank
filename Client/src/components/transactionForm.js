@@ -49,7 +49,7 @@ export default function TransactionForm() {
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
     
     AddTransaction(statusNewTransaction).then((newTransaction)=>{
-        alert(newTransaction)   
+        alert("you create a transaction!")   
         
     })
 
@@ -83,9 +83,10 @@ export default function TransactionForm() {
           <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12}>
-                <TextField
+                <TextField 
                   required
                   fullWidth
+                  
                   id="amount"
                   label="transaction amount"
                   name="amount"
