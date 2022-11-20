@@ -18,6 +18,7 @@ import TransactionButton from './buttons/transactionButton'
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import CustomizedSnackbars from './buttons/snackBar';
 
 
 
@@ -30,8 +31,9 @@ export default function TransactionForm(props) {
         amount:0,        
         vendor:""
     })
+  const [color,setColor]=useState('')  
   const [categoryChoose,setCategoryChoose]=useState('')
-    
+  const [open,setOpen]=useState(false)  
 
   const changeStatusInput=(value,name)=>{
     if(name==Constants.amount){
@@ -61,12 +63,14 @@ export default function TransactionForm(props) {
     const statusNewTransaction ={"amount":amount,"vendor":vendor,"category":category}
   
     
-    AddTransaction(statusNewTransaction).then((newTransaction)=>{
+
+    AddTransaction(statusNewTransaction).then(()=>{
         const error = checkValidation(statusNewTransaction)
         if(error instanceof Error){
-            alert(error)
+            setColor('error')
         }else{
-            alert("you create a transaction!")
+            setOpen(true)
+            setColor('success')
             props.serBalanceEveryChange()   
             
         }
@@ -77,6 +81,8 @@ export default function TransactionForm(props) {
 
 
   };
+
+ 
 
   
   const handleCategories=(evt)=>{
@@ -159,6 +165,7 @@ export default function TransactionForm(props) {
             <TransactionButton  handleAddTransaction={handleAddTransaction } color={'success.main'}  buttonName={"deposit"}/>
             </Box>
         </Box>
+        <CustomizedSnackbars open={open} color={color} messege={"you succed to create transaction"}/>
       
       </Container>
     </ThemeProvider>
