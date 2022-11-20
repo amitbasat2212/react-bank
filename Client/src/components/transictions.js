@@ -6,7 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Transaction from "./Transiction";
 import { fetchTransactionsApi,deleteTransactionApi} from "../ApiClient/ApiClientTransactions";
-import { StyledTableCell,StyledTableRow } from "../Style/transactionStyle";
+import { StyledTableCell } from "../Style/transactionStyle";
 import React, { useState, useEffect } from 'react'
 
 

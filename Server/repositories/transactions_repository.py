@@ -54,8 +54,6 @@ def add_transaction_query(transaction_data):
             ,'{transaction_data[transaction_const.vendor]}'
             )'''
 
-            cursor.execute(insert_new_transaction)
-            connection.commit()
             
             new_transaction = transaction_utils.create_transaction_dto(transaction_data)
             
@@ -63,6 +61,8 @@ def add_transaction_query(transaction_data):
 
             category_repository.update_category_spending(new_transaction.transiction_amount,new_transaction.category_name,transaction_const.positive_to_add)
 
+            cursor.execute(insert_new_transaction)
+            connection.commit()
             return new_transaction
 
     except TypeError as e:
@@ -77,12 +77,12 @@ def delete_transaction_query(id_transaction):
         
         with connection.cursor() as cursor:
             delete_transaction = f"DELETE FROM transactions WHERE transaction_id={id_transaction};"
-            cursor.execute(delete_transaction)           
-            connection.commit()
-            
+                        
             balance_repository.update_the_balance_query(transaction_to_delete[0].transiction_amount,transaction_const.nagitive_to_return)
             category_repository.update_category_spending(transaction_to_delete[0].transiction_amount,transaction_to_delete[0].category_name,transaction_const.nagitive_to_return)
 
+            cursor.execute(delete_transaction)           
+            connection.commit()
             return {"succes": 200}
 
     except TypeError as e:
